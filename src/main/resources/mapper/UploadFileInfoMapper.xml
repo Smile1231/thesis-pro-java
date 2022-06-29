@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jinmao.thesisproject.mapper.UploadFileInfoMapper">
+    <resultMap id="BaseResultMap" type="com.jinmao.thesisproject.entity.po.UploadFileInfo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="file_type" jdbcType="INTEGER" property="fileType"/>
+        <result column="file_suffix" jdbcType="VARCHAR" property="fileSuffix"/>
+        <result column="file_uid" jdbcType="VARCHAR" property="fileUid"/>
+        <result column="file_name" jdbcType="VARCHAR" property="fileName"/>
+        <result column="file_url" jdbcType="VARCHAR" property="fileUrl"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, file_type, file_suffix, file_uid, file_name, file_url, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from upload_file_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from upload_file_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id"
+            parameterType="com.jinmao.thesisproject.entity.po.UploadFileInfo" useGeneratedKeys="true">
+        insert into upload_file_info (file_type, file_suffix, file_uid,
+                                      file_name, file_url, create_time,
+                                      update_time)
+        values (#{fileType,jdbcType=INTEGER}, #{fileSuffix,jdbcType=VARCHAR}, #{fileUid,jdbcType=VARCHAR},
+                #{fileName,jdbcType=VARCHAR}, #{fileUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+                #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.jinmao.thesisproject.entity.po.UploadFileInfo" useGeneratedKeys="true">
+        insert into upload_file_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fileType != null and fileType != ''">
+                file_type,
+            </if>
+            <if test="fileSuffix != null and fileSuffix !=''">
+                file_suffix,
+            </if>
+            <if test="fileUid != null and fileUid !=''">
+                file_uid,
+            </if>
+            <if test="fileName != null and fileName !=''">
+                file_name,
+            </if>
+            <if test="fileUrl != null and fileUrl !=''">
+                file_url,
+            </if>
+            <if test="createTime != null and createTime !=''">
+                create_time,
+            </if>
+            <if test="updateTime != null and updateTime != ''">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fileType != null and fileType != ''">
+                #{fileType,jdbcType=INTEGER},
+            </if>
+            <if test="fileSuffix != null and fileSuffix !=''">
+                #{fileSuffix,jdbcType=VARCHAR},
+            </if>
+            <if test="fileUid != null and fileUid !=''">
+                #{fileUid,jdbcType=VARCHAR},
+            </if>
+            <if test="fileName != null and fileName !=''">
+                #{fileName,jdbcType=VARCHAR},
+            </if>
+            <if test="fileUrl != null and fileUrl !=''">
+                #{fileUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null and createTime !=''">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null and updateTime != ''">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.jinmao.thesisproject.entity.po.UploadFileInfo">
+        update upload_file_info
+        <set>
+            <if test="fileType != null">
+                file_type = #{fileType,jdbcType=INTEGER},
+            </if>
+            <if test="fileSuffix != null">
+                file_suffix = #{fileSuffix,jdbcType=VARCHAR},
+            </if>
+            <if test="fileUid != null">
+                file_uid = #{fileUid,jdbcType=VARCHAR},
+            </if>
+            <if test="fileName != null">
+                file_name = #{fileName,jdbcType=VARCHAR},
+            </if>
+            <if test="fileUrl != null">
+                file_url = #{fileUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.jinmao.thesisproject.entity.po.UploadFileInfo">
+        update upload_file_info
+        set file_type   = #{fileType,jdbcType=INTEGER},
+            file_suffix = #{fileSuffix,jdbcType=VARCHAR},
+            file_uid    = #{fileUid,jdbcType=VARCHAR},
+            file_name   = #{fileName,jdbcType=VARCHAR},
+            file_url    = #{fileUrl,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="getFileInfoByTypeAndSuffix" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from upload_file_info
+        where
+        file_type = #{fileType,jdbcType=INTEGER}
+        and
+        file_suffix = #{fileSuffix,jdbcType=VARCHAR}
+    </select>
+
+</mapper>

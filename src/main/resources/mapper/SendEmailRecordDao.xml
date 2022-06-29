@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jinmao.thesisproject.mapper.SendEmailRecordDao">
+  <resultMap id="BaseResultMap" type="com.jinmao.thesisproject.entity.po.SendEmailRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="from" jdbcType="VARCHAR" property="from" />
+    <result column="to" jdbcType="VARCHAR" property="to" />
+    <result column="subject" jdbcType="VARCHAR" property="subject" />
+    <result column="text" jdbcType="VARCHAR" property="text" />
+    <result column="cc" jdbcType="VARCHAR" property="cc" />
+    <result column="bcc" jdbcType="VARCHAR" property="bcc" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="error" jdbcType="VARCHAR" property="error" />
+    <result column="send_date" jdbcType="TIMESTAMP" property="sendDate" />
+    <result column="computation_directory" jdbcType="VARCHAR" property="computationDirectory" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `from`, `to`, subject, `text`, cc, bcc, `status`, error, send_date, computation_directory
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from send_email_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from send_email_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.jinmao.thesisproject.entity.po.SendEmailRecord" useGeneratedKeys="true">
+    insert into send_email_record (`from`, `to`, subject, 
+      `text`, cc, bcc, `status`, 
+      error, send_date, computation_directory
+      )
+    values (#{from,jdbcType=VARCHAR}, #{to,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, 
+      #{text,jdbcType=VARCHAR}, #{cc,jdbcType=VARCHAR}, #{bcc,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{error,jdbcType=VARCHAR}, #{sendDate,jdbcType=TIMESTAMP}, #{computationDirectory,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.jinmao.thesisproject.entity.po.SendEmailRecord" useGeneratedKeys="true">
+    insert into send_email_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="from != null">
+        `from`,
+      </if>
+      <if test="to != null">
+        `to`,
+      </if>
+      <if test="subject != null">
+        subject,
+      </if>
+      <if test="text != null">
+        `text`,
+      </if>
+      <if test="cc != null">
+        cc,
+      </if>
+      <if test="bcc != null">
+        bcc,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="error != null">
+        error,
+      </if>
+      <if test="sendDate != null">
+        send_date,
+      </if>
+      <if test="computationDirectory != null">
+        computation_directory,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="from != null">
+        #{from,jdbcType=VARCHAR},
+      </if>
+      <if test="to != null">
+        #{to,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="text != null">
+        #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="cc != null">
+        #{cc,jdbcType=VARCHAR},
+      </if>
+      <if test="bcc != null">
+        #{bcc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="error != null">
+        #{error,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDate != null">
+        #{sendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="computationDirectory != null">
+        #{computationDirectory,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jinmao.thesisproject.entity.po.SendEmailRecord">
+    update send_email_record
+    <set>
+      <if test="from != null">
+        `from` = #{from,jdbcType=VARCHAR},
+      </if>
+      <if test="to != null">
+        `to` = #{to,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="text != null">
+        `text` = #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="cc != null">
+        cc = #{cc,jdbcType=VARCHAR},
+      </if>
+      <if test="bcc != null">
+        bcc = #{bcc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="error != null">
+        error = #{error,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDate != null">
+        send_date = #{sendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="computationDirectory != null">
+        computation_directory = #{computationDirectory,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jinmao.thesisproject.entity.po.SendEmailRecord">
+    update send_email_record
+    set `from` = #{from,jdbcType=VARCHAR},
+      `to` = #{to,jdbcType=VARCHAR},
+      subject = #{subject,jdbcType=VARCHAR},
+      `text` = #{text,jdbcType=VARCHAR},
+      cc = #{cc,jdbcType=VARCHAR},
+      bcc = #{bcc,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      error = #{error,jdbcType=VARCHAR},
+      send_date = #{sendDate,jdbcType=TIMESTAMP},
+      computation_directory = #{computationDirectory,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
