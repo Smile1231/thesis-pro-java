@@ -1,0 +1,38 @@
+server:
+  port: 9999
+  tomcat:
+    max-http-form-post-size: -1
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+#    password: cyroot1231
+    url: jdbc:mysql://localhost:3306/thesispro?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+  main:
+    banner-mode: off
+  servlet:
+#    配置单个上传文件的大小的限制
+    multipart:
+      max-file-size: 500MB
+#      配置在一次请求中上传文件的总容量的限制
+      max-request-size: 600MB
+  mail:
+    host: smtp.163.com
+    username: JinMaoToRich@163.com #登陆账号
+    password: FCXTDPPUDAGODNVC #登陆密码（或授权码）
+    properties:
+      from: JinMaoToRich@163.com #邮件发信人（即真实邮箱）
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.cy.thesisproject.entity
+shell:
+  coreFile: coreCalFile.sh
+  zipShellName: post_processor.sh
+  compressedFileName: result.zip
+  alarmEmail: 71205901060@stu.ecnu.edu.cn
+  initShellName: initShell_local.sh
+
+

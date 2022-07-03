@@ -13,12 +13,9 @@ import com.jinmao.thesisproject.mapper.SubmitRecordInfoMapper;
 import com.jinmao.thesisproject.nums.ResultCodeEnum;
 import com.jinmao.thesisproject.utils.DirectoryUtil;
 import com.jinmao.thesisproject.utils.ExecuteShellUtil;
-import com.jinmao.thesisproject.utils.ExecutorUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.concurrent.CompletableFuture;
 
 /**
  * @author jinmao
@@ -74,9 +71,9 @@ public class SubmitService {
         // init source directory
         String computationPath = executeShellUtil.initShellAction(dirUid,GZFileName, GZFileUrl, XLSXFileName, XLSXFileUrl);
         // start calculate
-        CompletableFuture.runAsync(() -> {
-            executeShellUtil.executeShell(computationPath, uploadFileSubmitEntity.getEmail());
-        }, ExecutorUtil.getExcelExecutor());
+//        CompletableFuture.runAsync(() -> {
+//            executeShellUtil.executeShell(computationPath, uploadFileSubmitEntity.getEmail());
+//        }, ExecutorUtil.getExcelExecutor());
 
         return new ResultVO<>(ResultCodeEnum.SUCCESS);
     }

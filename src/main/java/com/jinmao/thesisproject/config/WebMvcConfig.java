@@ -34,6 +34,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 //放行哪些请求方式
 //                .allowedMethods(new String[]{"GET", "POST", "PUT", "DELETE"})
                 .allowedMethods("*") //或者放行全部
+                .allowedHeaders("*")
         ;
     }
 }

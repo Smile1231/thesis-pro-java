@@ -2,14 +2,10 @@ package com.jinmao.thesisproject.controller.business;
 
 import com.jinmao.thesisproject.entity.dto.UploadFileSubmitEntity;
 import com.jinmao.thesisproject.entity.vo.ResultVO;
-import com.jinmao.thesisproject.nums.ResultCodeEnum;
 import com.jinmao.thesisproject.service.SubmitService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author jinmao
@@ -17,8 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description
  */
 @Slf4j
-@RequestMapping("/business")
+@RequestMapping("/api/business")
 @RestController
+@CrossOrigin
 public class SubmitController {
     @Autowired
     private SubmitService submitService;

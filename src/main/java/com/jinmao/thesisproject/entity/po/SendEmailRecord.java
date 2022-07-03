@@ -78,7 +78,7 @@ public class SendEmailRecord implements Serializable {
     public static SendEmailRecord getSendEmailRecordEntity(){
         SendEmailRecord sendEmailRecord = new SendEmailRecord();
         sendEmailRecord.setSubject("⭐️ Your Calculate Result ⭐️");
-        sendEmailRecord.setText("Thank you for using ... now you can download attachment to get your result 💫.");
+        sendEmailRecord.setText("Thank you for using our BABE（Batch Analyzer for Base Editor,now you can download attachment to get your result 💫.");
 
         return sendEmailRecord;
     }

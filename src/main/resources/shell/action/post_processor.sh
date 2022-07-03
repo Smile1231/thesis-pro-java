@@ -11,6 +11,8 @@ function zipAction() {
     local zip_file_name=$2
     zip -r "$zip_file_name" all_* all-* mutation_count.all table.all total.summary
     echo "####### end zip result!#######"
+
+    internet_connect
 }
 
 cd ../../

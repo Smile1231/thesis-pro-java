@@ -9,6 +9,7 @@ import com.jinmao.thesisproject.entity.po.SubmitRecordInfo;
 import com.jinmao.thesisproject.service.SendMailService;
 import com.jinmao.thesisproject.utils.DirectoryUtil;
 import com.jinmao.thesisproject.utils.ExecuteShellUtil;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,7 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
+@Ignore
 @SpringBootTest
 class ThesisProjectApplicationTests {
 
