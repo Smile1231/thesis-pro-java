@@ -85,7 +85,6 @@ public class ExecuteShellUtil {
             return;
         }
         try {
-            assert process != null;
             process.waitFor();
         } catch (InterruptedException e) {
             log.error("###### execute shell error .###### " ,e);
@@ -94,10 +93,10 @@ public class ExecuteShellUtil {
         }
             log.info("###### execute shell source success. ######");
             // zip file and send email
-            zipFileAction(dirPath);
+            zipFileAction(dirPath,email);
             sendMailService.SendMailWithAttach(buildEmailParam(dirPath,email));
     }
-    public void zipFileAction(String computationDir){
+    public void zipFileAction(String computationDir,String email){
         log.info("###### start zip file , computation is {} ###### ", computationDir);
         // initShell
         Process process = null;
@@ -116,7 +115,7 @@ public class ExecuteShellUtil {
         } catch (IOException e) {
             log.error("###### run shell zip script is error , message is {}######", e.getMessage());
             log.warn(" ###### send alarm email .... ###### ");
-            sendMailService.SendMailWithAttach(buildEmailParam(computationDir,"",e.getMessage()));
+            sendMailService.SendMailWithAttach(buildEmailParam(computationDir,email,e.getMessage()));
             return;
         }
         int runningStatus = 0;
@@ -125,13 +124,13 @@ public class ExecuteShellUtil {
         } catch (InterruptedException e) {
             log.error("###### run shell zip script occurs error, error is {} ######", e.getMessage());
             log.warn(" ###### send alarm email .... ###### ");
-            sendMailService.SendMailWithAttach(buildEmailParam(computationDir,"",e.getMessage()));
+            sendMailService.SendMailWithAttach(buildEmailParam(computationDir,email,e.getMessage()));
             return;
         }
         if(runningStatus != 0) {
             log.error("###### run shell zip script failed.###### ");
             log.warn(" ###### send alarm email .... ###### ");
-            sendMailService.SendMailWithAttach(buildEmailParam(computationDir,"","running status not equal 0"));
+            sendMailService.SendMailWithAttach(buildEmailParam(computationDir,email,"running status not equal 0"));
         }else {
             log.info("###### run shell zip script success. ######");
         }
@@ -191,11 +190,20 @@ public class ExecuteShellUtil {
     public SendEmailRecord buildEmailParam(String computationDir,String email,String errorMsg){
         SendEmailRecord sendEmailRecord = SendEmailRecord.getSendEmailRecordEntity();
         StringBuilder sb = new StringBuilder();
-        sb.append("computationDirectory is " + computationDir + "\n")
-          .append("to email is " + email + "\n")
-          .append("errorMsg is " + errorMsg);
+
+        sb.append("Your programme may occurs some errors ,you can check file you have uploaded and try again 😀")
+        .append("\n")
+        .append("computationDirectory is ")
+        .append(computationDir)
+        .append("\n")
+        .append("to email is ")
+        .append(email)
+        .append("\n")
+        .append("errorMsg is ")
+        .append(errorMsg);
+
         sendEmailRecord.setText(sb.toString());
-        sendEmailRecord.setTo(shellProperties.getAlarmEmail());
+        sendEmailRecord.setTo(email);
         sendEmailRecord.setComputationDirectory(computationDir);
         return sendEmailRecord;
     }

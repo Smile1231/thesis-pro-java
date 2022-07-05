@@ -28,11 +28,11 @@ function init() {
     unzip -d "$target_dir/test_NGS_data/" "$target_dir/$gz_file_name"
        # shellcheck disable=SC2045
      for x in $(ls ./"$target_dir/test_NGS_data/");do
- #        mv "$target_dir"/test_NGS_data/"$x"/* "$target_dir"/test_NGS_data
- #        rm -rf "$target_dir"/test_NGS_data/"$x"
-         if [ -d "$target_dir/test_NGS_data/$x" ]; then
-             rm -rf "$target_dir"/test_NGS_data/"$x"
-         fi
+         mv "$target_dir"/test_NGS_data/"$x"/* "$target_dir"/test_NGS_data
+         rm -rf "$target_dir"/test_NGS_data/"$x"
+         #if [ -d "$target_dir/test_NGS_data/$x" ]; then
+        #     rm -rf "$target_dir"/test_NGS_data/"$x"
+         #fi
      done
     # shellcheck disable=SC2115
     rm -rf "$target_dir/$gz_file_name"
